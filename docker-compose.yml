@@ -1,0 +1,23 @@
+services:
+  backend:
+    build: ./server
+    container_name: puthagamcircle-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_PATH=/data/books.db
+    volumes:
+      - books_data:/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./client
+    container_name: puthagamcircle-frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  books_data:
