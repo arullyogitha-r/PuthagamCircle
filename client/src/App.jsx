@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-const API_URL = 'http://localhost:5000/api/books'
+const API_BASE = 'https://puthagamcircle.onrender.com/api'
+const API_URL = `${API_BASE}/books`
 
 const initialBooks = [
   { id: 'd1', title: 'The Alchemist', author: 'Paulo Coelho', category: 'Fiction', isbn: '9780062315007', description: 'A young shepherd travels in search of his personal legend, discovering the importance of dreams, courage and listening to your heart.', type: 'sale', price: 180, owner: 'Book Community', location: 'Pollachi' },
@@ -141,7 +142,7 @@ function App() {
     setRequestLoading(true)
 
     try {
-      const response = await fetch('http://localhost:5000/api/interests', {
+      const response = await fetch(`${API_BASE}/interests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -172,7 +173,7 @@ function App() {
 
   async function loadRequests() {
     try {
-      const response = await fetch('http://localhost:5000/api/interests')
+      const response = await fetch(`${API_BASE}/interests`)
 
       if (!response.ok) {
         throw new Error('Failed')
